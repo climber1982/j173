@@ -1,15 +1,15 @@
 package com.lovo.spring.bean;
 
 public class UserBean {
-    private  String UserName;
+    private  String userName;
     private  int  age;
 
     public String getUserName() {
-        return UserName;
+        return userName;
     }
 
     public void setUserName(String userName) {
-        UserName = userName;
+        this.userName = userName;
     }
 
     public int getAge() {

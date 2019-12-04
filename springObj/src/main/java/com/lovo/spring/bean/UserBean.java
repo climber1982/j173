@@ -1,6 +1,7 @@
 package com.lovo.spring.bean;
 
 public class UserBean {
+    private  int userId;
     private  String userName;
     private  int  age;
 
@@ -18,5 +19,13 @@ public class UserBean {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }

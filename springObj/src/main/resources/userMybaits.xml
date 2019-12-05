@@ -45,4 +45,12 @@
        <!--绑定接口。绑定接口的形式，批量的绑定接口-->
        <property name="basePackage" value="com.lovo.spring.dao"></property>
    </bean>
+  <bean id="myAspect" class="com.lovo.spring.aop.MyAspect"></bean>
+
+    <aop:config>
+        <aop:aspect id="aop" ref="myAspect">
+               <aop:before method="beforeMessage"
+                           pointcut="execution( * com.lovo.spring.*.IUserCrudService.*(..) )"></aop:before>
+        </aop:aspect>
+    </aop:config>
 </beans>

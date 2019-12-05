@@ -5,13 +5,14 @@ import com.lovo.spring.dao.IUserCrudDao;
 import com.lovo.spring.service.IUserCrudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service(value = "userCrudService")
 public class UserCrudServiceImpl implements IUserCrudService {
     @Autowired
     private IUserCrudDao userCrudDao;
-    @Override
+ @Transactional
     public void savaUser(UserBean user) {
         userCrudDao.savaUser(user);
     }

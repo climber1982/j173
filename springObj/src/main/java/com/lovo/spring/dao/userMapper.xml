@@ -3,12 +3,12 @@
 <mapper namespace="com.lovo.spring.dao.IUserCrudDao">
 
    <insert id="savaUser" parameterType="UserBean">
-       insert into j173.sys_user(userName,age) values
+       insert into sys_user(userName,age) values
        (#{userName},#{age})
    </insert>
 
     <select id="findUserList" resultType="UserBean">
-        select Id as userId,userName,age from j173.sys_user
+        select Id as userId,userName,age from sys_user
     </select>
 
 </mapper>

@@ -5,6 +5,8 @@ import com.lovo.spring.service.IUserCrudService;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.util.List;
+
 public class Tmybaits {
 
     @Test
@@ -15,6 +17,10 @@ public class Tmybaits {
 //        userBean.setUserName("赵云");
 //        userBean.setAge(30);
 //    service.savaUser(userBean);
-        service.findUserList();
+       List<UserBean> list=service.findUserList();
+        for (UserBean u:list
+             ) {
+            System.out.println(u.getUserName());
+        }
     }
 }

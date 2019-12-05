@@ -22,4 +22,9 @@ public class ProxyPlayer implements IPlayer  {
         System.out.println("代练后");
         return "最强王者";
     }
+
+    @Override
+    public void eat() {
+
+    }
 }

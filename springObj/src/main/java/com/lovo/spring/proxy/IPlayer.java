@@ -6,4 +6,6 @@ public interface IPlayer {
      * @return
      */
     public String play();
+
+    public void  eat();
 }

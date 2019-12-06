@@ -56,7 +56,7 @@
      <tx:advice id="mybaitsAdvice" transaction-manager="transactionManager">
             <tx:attributes>
                 <tx:method name="find*" read-only="true"/>
-                <tx:method name="*" rollback-for="Exception"></tx:method>
+                <tx:method name="*" rollback-for="Exception" propagation="REQUIRED" isolation="READ_COMMITTED" ></tx:method>
             </tx:attributes>
      </tx:advice>
 <!--AOP-->

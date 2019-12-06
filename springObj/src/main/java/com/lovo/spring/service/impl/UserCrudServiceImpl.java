@@ -20,6 +20,12 @@ public class UserCrudServiceImpl implements IUserCrudService {
     }
 
     @Override
+    public void savaUser2(UserBean user) {
+        userCrudDao.savaUser(user);
+        this.savaUser(user);
+    }
+
+    @Override
     public List<UserBean> findUserList() {
         return userCrudDao.findUserList();
     }

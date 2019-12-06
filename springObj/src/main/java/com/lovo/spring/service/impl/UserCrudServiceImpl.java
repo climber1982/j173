@@ -12,9 +12,11 @@ import java.util.List;
 public class UserCrudServiceImpl implements IUserCrudService {
     @Autowired
     private IUserCrudDao userCrudDao;
- @Transactional
+
     public void savaUser(UserBean user) {
-        userCrudDao.savaUser(user);
+
+     userCrudDao.savaUser(user);
+     int i=1/0;
     }
 
     @Override

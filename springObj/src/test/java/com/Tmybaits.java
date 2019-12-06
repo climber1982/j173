@@ -13,14 +13,14 @@ public class Tmybaits {
     public void  sava(){
         ClassPathXmlApplicationContext app=new ClassPathXmlApplicationContext("userMybaits.xml");
     IUserCrudService service= (IUserCrudService) app.getBean("userCrudService");
-//        UserBean userBean=new UserBean();
-//        userBean.setUserName("赵云");
-//        userBean.setAge(30);
-//    service.savaUser(userBean);
-       List<UserBean> list=service.findUserList();
-        for (UserBean u:list
-             ) {
-            System.out.println(u.getUserName());
-        }
-    }
+        UserBean userBean=new UserBean();
+        userBean.setUserName("马超2");
+        userBean.setAge(30);
+    service.savaUser(userBean);
+//       List<UserBean> list=service.findUserList();
+//        for (UserBean u:list
+//             ) {
+//            System.out.println(u.getUserName());
+//        }
+   }
 }

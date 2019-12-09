@@ -10,8 +10,15 @@ public interface IUserDao {
      * @param user
      */
     public  void savaUser(UserEntity user);
+    /**
+     * 保存用户
+     * @param user
+     */
+    public  void savaUser2(UserEntity user);
 
     public UserEntity getUserById(String id);
+
+    public  void  updateUser(String id);
 
     //public List<UserEntity> getListUserList();
 }

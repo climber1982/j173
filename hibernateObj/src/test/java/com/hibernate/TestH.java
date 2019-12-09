@@ -39,4 +39,28 @@ public class TestH {
    UserEntity user= userDao.getUserById("1a");
     System.out.println(user.getUserName());
   }
+
+  @Test
+  public  void sava2(){
+      //启动spring
+      ClassPathXmlApplicationContext applicationContext
+              =new ClassPathXmlApplicationContext("application.xml");
+      //获得DAO
+      IUserDao userDao= (IUserDao) applicationContext.getBean("userDao");
+      UserEntity userEntity=new UserEntity();
+      userEntity.setUserName("关羽-2");
+      userEntity.setUserAge(30);
+      userEntity.setDateTime("2019-11-12");
+      userDao.savaUser2(userEntity);
+  }
+
+  @Test
+  public  void updateUser(){
+      //启动spring
+      ClassPathXmlApplicationContext applicationContext
+              =new ClassPathXmlApplicationContext("application.xml");
+      //获得DAO
+      IUserDao userDao= (IUserDao) applicationContext.getBean("userDao");
+      userDao.updateUser("4028815e6ee9ebf1016ee9ec16160000");
+  }
 }

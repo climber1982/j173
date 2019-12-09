@@ -20,7 +20,7 @@
        default-lazy-init="true">
 
   <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
- <context:component-scan base-package="com.lovo.hibernate.dao"></context:component-scan>
+ <context:component-scan base-package="com.lovo.hibernate.*"></context:component-scan>
 
     <!--获得数据源-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
@@ -46,5 +46,11 @@
       <property name="packagesToScan" value="com.lovo.hibernate.entity"></property>
   </bean>
 
+    <!--事务管理器-->
+    <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="factoryBean"></property>
+    </bean>
 
+    <!---注解的形式管理实务-->
+     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"></tx:annotation-driven>
 </beans>

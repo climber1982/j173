@@ -1,20 +1,42 @@
 package com.lovo.hibernate.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "sys_user")//映射表面，默认就是类名
 public class UserEntity {
     @Id //标注为ID
+    //@GeneratedValue(strategy = GenerationType.AUTO)//ID生成策略
+    @GenericGenerator(name = "userUUID",strategy = "uuid") //自定义了一个uuid生成策略
+    @GeneratedValue(generator = "userUUID")
     @Column(name = "id",length = 32)//映射数据库的列
     private String userId;
-    @Column(length = 48)
+    @Column(length = 48,unique = true)
     private String userName;
     @Column(name = "age")
     private int userAge;
+    @Column(columnDefinition = "text")
+    private String message;
+   @Column(columnDefinition = "TIMESTAMP")
+    private String dateTime;
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getDateTime() {
+        return dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
 
     public String getUserId() {
         return userId;

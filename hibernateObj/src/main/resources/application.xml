@@ -19,10 +19,32 @@
                     http://www.springframework.org/schema/cache/spring-cache-3.1.xsd "
        default-lazy-init="true">
 
-      <bean id="userBean" class="com.lovo.spring.bean.UserBean">
-          <property name="userName" value="赵云"></property>
-          <property name="age" value="1000"></property>
-      </bean>
+  <context:property-placeholder location="classpath:jdbc.properties"></context:property-placeholder>
+ <context:component-scan base-package="com.lovo.hibernate.dao"></context:component-scan>
+
+    <!--获得数据源-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="url" value="${jdbc_url}"></property>
+        <property name="username" value="${jdbc_user}"></property>
+        <property name="password" value="${jdbc_password}"></property>
+        <property name="driverClassName" value="${jdbc_driver}"></property>
+    </bean>
+
+    <!--hibernate工厂-->
+  <bean id="factoryBean" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+      <property name="dataSource" ref="dataSource"></property>
+
+      <!--指令放入hibernate的properties对象中去-->
+      <property name="hibernateProperties">
+          <props>
+              <prop key="hibernate.dialect">${hibernate.dialect}</prop>
+              <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+              <prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+          </props>
+      </property>
+      <!--扫描实体包，把实体交给hibernate管理 -->
+      <property name="packagesToScan" value="com.lovo.hibernate.entity"></property>
+  </bean>
 
 
 </beans>

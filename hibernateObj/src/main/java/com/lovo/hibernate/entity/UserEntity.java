@@ -1,9 +1,19 @@
 package com.lovo.hibernate.entity;
 
-public class UserEntity {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "sys_user")//映射表面，默认就是类名
+public class UserEntity {
+    @Id //标注为ID
+    @Column(name = "id",length = 32)//映射数据库的列
     private String userId;
+    @Column(length = 48)
     private String userName;
+    @Column(name = "age")
     private int userAge;
 
     public String getUserId() {

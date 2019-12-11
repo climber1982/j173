@@ -5,6 +5,7 @@ import com.lovo.hibernate.dto.UserDto;
 import com.lovo.hibernate.entity.RoleUserEntity;
 import com.lovo.hibernate.entity.UserEntity;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.junit.Before;
 import org.junit.Test;
@@ -136,4 +137,33 @@ public class HQL {
         System.out.println(list.size());
 
     }
+
+    @Test
+    public  void updateUser(){
+        String hql="update UserEntity set message=?0,age=?1 where userName=?2";
+        Session session=basicDAO.getOpenSession();
+       Transaction tx= session.getTransaction();
+       tx.begin();
+     int i=  session.createQuery(hql)
+               .setParameter(0,"hello hibernate")
+               .setParameter(1,60)
+               .setParameter(2,"赵云")
+               .executeUpdate();
+       tx.commit();
+    }
+
+    @Test
+    public  void delUser(){
+        String hql="delete from UserEntity  where userAge=?0";
+        Session session=basicDAO.getOpenSession();
+        Transaction tx= session.getTransaction();
+        tx.begin();
+        //executeUpdate(); 返回受影响的行数
+        int i=  session.createQuery(hql)
+                .setParameter(0,20)
+                .executeUpdate();
+        System.out.println(i);
+        tx.commit();
+    }
+
 }

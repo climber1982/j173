@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 
 public class HQL {
     BasicDAO basicDAO=null;
@@ -119,5 +120,20 @@ public class HQL {
         }
 
     }
+    //查询部分字段
+    @Test
+    public void findSegmentMap(){
+        String userName="赵云";
+        String hql="select new map(userName,userAge) from UserEntity where userName like  ?0";
+        Session session=basicDAO.getOpenSession();
+        List<Map> list=
+                session.createQuery(hql)
+                        .setParameter(0,userName+"%")
+                        .list();
+          for(Map map:list){
+              System.out.println("用户名"+map.get("0")+"/用户年龄"+map.get("1"));
+          }
+        System.out.println(list.size());
 
+    }
 }

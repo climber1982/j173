@@ -3,6 +3,7 @@ package com.lovo.hibernate.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "sys_user")//映射表面，默认就是类名
@@ -21,6 +22,11 @@ public class UserEntity {
     private String message;
    @Column(columnDefinition = "TIMESTAMP")
     private String dateTime;
+
+     //持有角色用户集合
+     @OneToMany(mappedBy = "user")
+     List<RoleUserEntity> roleUserEntityList;
+
 
     public String getMessage() {
         return message;
@@ -60,5 +66,13 @@ public class UserEntity {
 
     public void setUserAge(int userAge) {
         this.userAge = userAge;
+    }
+
+    public List<RoleUserEntity> getRoleUserEntityList() {
+        return roleUserEntityList;
+    }
+
+    public void setRoleUserEntityList(List<RoleUserEntity> roleUserEntityList) {
+        this.roleUserEntityList = roleUserEntityList;
     }
 }

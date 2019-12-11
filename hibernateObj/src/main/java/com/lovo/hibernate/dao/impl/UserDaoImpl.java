@@ -1,5 +1,8 @@
-package com.lovo.hibernate.dao;
+package com.lovo.hibernate.dao.impl;
 
+import com.lovo.hibernate.dao.BasicDAO;
+import com.lovo.hibernate.dao.IUserDao;
+import com.lovo.hibernate.entity.RoleEntity;
 import com.lovo.hibernate.entity.UserEntity;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -69,15 +72,14 @@ public class UserDaoImpl extends BasicDAO implements IUserDao {
         session.close();
     }
 
-    //
-//    @Override
-//    public List<UserEntity> getListUserList() {
-//        //获得工厂
-//        SessionFactory sessionFactory= factoryBean.getObject();
-//        //获得session
-//        Session session= sessionFactory.openSession();
-//        String hql="from UserEntity";
-//      List<UserEntity> list=   session.createQuery(hql).list();
-//        return list;
-//    }
+    public  UserEntity getUser(String id){
+        Session session=super.getOpenSession();
+      UserEntity user=  session.load(UserEntity.class,id);
+
+        session.close();
+     return  user;
+    }
+
+
+
 }

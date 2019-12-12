@@ -14,6 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("ALL")
 public class HQL {
     BasicDAO basicDAO=null;
     @Before

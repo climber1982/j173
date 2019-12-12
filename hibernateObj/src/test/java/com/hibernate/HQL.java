@@ -171,11 +171,13 @@ public class HQL {
         Session session=basicDAO.getOpenSession();
         Transaction tx= session.getTransaction();
         tx.begin();
-        UserEntity userEntity=new UserEntity();
-        userEntity.setUserName("关羽-2");
-        userEntity.setUserAge(30);
-        userEntity.setDateTime("2019-11-12");
-       session.save(userEntity);
+        for(int i=0;i<20;i++) {
+            UserEntity userEntity = new UserEntity();
+            userEntity.setUserName("关羽-2"+i);
+            userEntity.setUserAge(30+i);
+            userEntity.setDateTime("2019-11-12");
+            session.save(userEntity);
+        }
         tx.commit();
     }
     @Test
@@ -189,6 +191,35 @@ public class HQL {
                 .setParameter(1,"2020-01-01")
                 .list();
         System.out.println(list.size());
+    }
+    @Test
+    public void testJoin(){
+        Session session=basicDAO.getOpenSession();
+        String hql="select r.roleName  from RoleUserEntity ru left join ru.role r where ru.user.userName=?0";
+        List<String> list=
+        session.createQuery(hql)
+                .setParameter(0,"赵云")
+                .list();
+        System.out.println(list.size());
+    }
+    @Test
+    public  void testPage(){
+        Session session=basicDAO.getOpenSession();
+
+        String hql="from UserEntity where userName like ?0 order by  userAge";
+
+        int currentPage=2;//当前页
+        int pageCount=4;//每页的行数
+        int startNum=(currentPage-1)*pageCount;//起始位置
+        List<UserEntity> list=
+        session.createQuery(hql)
+                .setParameter(0,"关羽"+"%")
+                .setFirstResult(startNum) //起始位置
+                .setMaxResults(pageCount)//每页显示的行数
+                .list();
+       for (UserEntity user:list){
+           System.out.println(user.getUserName());
+       }
     }
 
 }

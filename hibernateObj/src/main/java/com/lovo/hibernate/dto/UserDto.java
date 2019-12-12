@@ -6,7 +6,12 @@ public class UserDto {
         this.userName = userName;
         this.userAge = userAge;
     }
-
+    public UserDto(String userName, int userAge,String roleName) {
+        this.userName = userName;
+        this.userAge = userAge;
+        this.roleName=roleName;
+    }
+    private String roleName;
     private String userName;
     private  int userAge;
 
@@ -24,5 +29,13 @@ public class UserDto {
 
     public void setUserAge(int userAge) {
         this.userAge = userAge;
+    }
+
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }

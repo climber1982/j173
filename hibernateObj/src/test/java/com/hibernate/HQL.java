@@ -166,5 +166,29 @@ public class HQL {
         System.out.println(i);
         tx.commit();
     }
+@Test
+    public  void savaUser(){
+        Session session=basicDAO.getOpenSession();
+        Transaction tx= session.getTransaction();
+        tx.begin();
+        UserEntity userEntity=new UserEntity();
+        userEntity.setUserName("关羽-2");
+        userEntity.setUserAge(30);
+        userEntity.setDateTime("2019-11-12");
+       session.save(userEntity);
+        tx.commit();
+    }
+    @Test
+    public  void findData(){
+
+        Session session=basicDAO.getOpenSession();
+        String hql="from UserEntity where DateTime>?0 and DateTime<?1";
+        List<UserEntity> list=
+        session.createQuery(hql)
+                .setParameter(0,"2019-01-01")
+                .setParameter(1,"2020-01-01")
+                .list();
+        System.out.println(list.size());
+    }
 
 }

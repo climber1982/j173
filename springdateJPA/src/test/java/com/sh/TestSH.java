@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
+import java.util.Map;
 
 public class TestSH {
     IUserService service;
@@ -32,9 +33,29 @@ public class TestSH {
     }
     @Test
     public void getListByAge(){
-        List<UserEntity> list= service.getUserListByAge(30);
+        List<UserEntity> list= service.getUserListByAge(0);
         for (UserEntity userEntity:list){
             System.out.println(userEntity.getUserName());
         }
+    }
+    @Test
+    public void getUserListMap(){
+     List<Map> list=   service.getUserListMap();
+     for(Map map:list){
+       String userName= (String) map.get("0");
+         System.out.println(userName);
+      }
+    }
+
+    @Test
+    public void getListByAgeSQL(){
+        List<UserEntity> list= service.getUserListByAgeSQL(30);
+        for (UserEntity userEntity:list){
+            System.out.println(userEntity.getUserName());
+        }
+    }
+  @Test
+    public void updateUser(){
+       service.updateUser(40,"赵云");
     }
 }

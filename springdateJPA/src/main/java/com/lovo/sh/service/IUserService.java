@@ -3,6 +3,7 @@ package com.lovo.sh.service;
 import com.lovo.sh.entity.UserEntity;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IUserService {
     /**
@@ -23,5 +24,9 @@ public interface IUserService {
     public  UserEntity getUserByName(String name);
 
     public  List<UserEntity> findAll();
+
+    public List<Map> getUserListMap();
+    public List<UserEntity> getUserListByAgeSQL(int age);
+    public void updateUser(int age,String userName);
 
 }

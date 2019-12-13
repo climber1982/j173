@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+
 @Service(value = "userService")
 @Transactional
 public class UserServiceImpl implements IUserService {
@@ -25,6 +27,9 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<UserEntity> getUserListByAge(int age) {
+        if(0==age){
+            return userDao.getUserListByAge();
+        }
         return userDao.getUserListByAge(age);
     }
 
@@ -36,5 +41,20 @@ public class UserServiceImpl implements IUserService {
     @Override
     public UserEntity getUserByName(String name) {
         return null;
+    }
+
+    @Override
+    public List<Map> getUserListMap() {
+        return userDao.getUserListMap();
+    }
+
+    @Override
+    public List<UserEntity> getUserListByAgeSQL(int age) {
+        return userDao.getUserListByAgeSQL(age);
+    }
+
+    @Override
+    public void updateUser(int age, String userName) {
+        userDao.updateUser(age,userName);
     }
 }

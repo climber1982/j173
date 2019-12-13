@@ -25,7 +25,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public List<UserEntity> getUserListByAge(int age) {
-        return null;
+        return userDao.getUserListByAge(age);
     }
 
     @Override

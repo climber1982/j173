@@ -84,4 +84,39 @@ public class SQL {
               System.out.println(dto.getUserName()+"/"+dto.getRoleName());
           }
     }
+    @Test
+    public  void testPower(){
+        //用户输入的权限对应的url
+        String url="delz.lovo";
+        //把用户拥有的所有权限查询出来
+        String sql="select p.url from sys_user u \n" +
+                "          LEFT JOIN sys_role_user ru on u.id=ru.u_id\n" +
+                "          LEFT JOIN sys_role r on r.r_id=ru.r_id\n" +
+                "          LEFT JOIN sys_role_power rp on rp.r_id=r.r_id\n" +
+                "          LEFT JOIN sys_power p on p.p_id=rp.p_id\n" +
+                "          where u.userName=?1";
+     List<Map> list=
+        session.createSQLQuery(sql)
+                .setParameter(1,"赵云")
+                .unwrap(NativeQueryImpl.class).setResultTransformer(Transformers.ALIAS_TO_ENTITY_MAP)
+                .list();
+
+     //对比用户是否拥有输入的权限
+        boolean bl=false;
+        for (Map map:list){
+            if(url.equals(map.get("url"))){
+                bl=true;
+                break;
+            }
+        }
+        if(bl){
+            System.out.println("拥有权限");
+        }else {
+            System.out.println("非法访问");
+        }
+    }
+
+
+
+
 }

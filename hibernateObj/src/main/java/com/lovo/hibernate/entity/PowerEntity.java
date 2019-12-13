@@ -11,6 +11,16 @@ public class PowerEntity {
     private long powerId;
     @Column(length = 48)
     private  String powerName;
+    @Column(length = 128)
+    private  String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
 
     public long getPowerId() {
         return powerId;

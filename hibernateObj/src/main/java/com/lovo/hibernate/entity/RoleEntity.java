@@ -12,6 +12,7 @@ public class RoleEntity {
     private long roleId;
     @Column(name = "r_name",length = 48)
     private String roleName;
+
    @OneToMany(mappedBy = "role")
     private Set<RolePowerEntity> rolePowerSet;
    @OneToMany(mappedBy = "role")

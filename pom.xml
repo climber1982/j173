@@ -11,6 +11,7 @@
     <modules>
         <module>springObj</module>
         <module>hibernateObj</module>
+        <module>springdateJPA</module>
     </modules>
     <!-- 指定maven仓库 -->
     <repositories><!-- 发现依赖和扩展的远程资源库 -->

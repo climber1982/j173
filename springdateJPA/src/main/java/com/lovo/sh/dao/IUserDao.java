@@ -1,6 +1,8 @@
 package com.lovo.sh.dao;
 
+import com.lovo.sh.entity.UserDto;
 import com.lovo.sh.entity.UserEntity;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -22,4 +24,12 @@ public interface IUserDao  extends CrudRepository<UserEntity,String> {
    @Query("update  UserEntity set userAge=?1 where userName=?2")
    @Modifying  //执行修改、删除语句
    public void updateUser(int age,String userName);
+    @Query(value = "select * from sys_user",nativeQuery = true)
+    public List<Map> getUserListMapSql();
+     //  from userEntity where userAge=?1 and userName=?1
+    public UserEntity findByUserAgeAndUserName(int age,String userName);
+
+   @Query("from UserEntity  where userAge=?1")
+    public List<UserEntity> findListByAgePage(int age, Pageable pageable);
+
 }

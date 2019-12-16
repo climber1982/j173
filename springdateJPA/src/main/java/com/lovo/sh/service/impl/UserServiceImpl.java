@@ -1,11 +1,15 @@
 package com.lovo.sh.service.impl;
 
 import com.lovo.sh.dao.IUserDao;
+import com.lovo.sh.entity.UserDto;
 import com.lovo.sh.entity.UserEntity;
 import com.lovo.sh.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import java.util.List;
 import java.util.Map;
@@ -56,5 +60,22 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void updateUser(int age, String userName) {
         userDao.updateUser(age,userName);
+    }
+
+    @Override
+    public List<Map> getUserListMapSql() {
+        return userDao.getUserListMapSql();
+    }
+
+    @Override
+    public UserEntity findByUserAgeAndUserName(int age, String userName) {
+        return userDao.findByUserAgeAndUserName(age,userName);
+    }
+
+    @Override
+    public List<UserEntity> findListByAgePage(int age) {
+         //第一个参数 起始页数从0开始,第二个参数每页显示的行数
+        Pageable pageable=PageRequest.of(1,3);
+        return userDao.findListByAgePage(age,pageable);
     }
 }

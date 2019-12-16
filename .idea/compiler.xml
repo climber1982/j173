@@ -7,11 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="hibernateObj" />
-        <module name="mvc" />
         <module name="springObj" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="j173" target="1.8" />
+      <module name="mvc" target="1.7" />
       <module name="springJ173" target="1.8" />
     </bytecodeTargetLevel>
   </component>

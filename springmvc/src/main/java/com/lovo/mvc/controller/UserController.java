@@ -4,6 +4,7 @@ import com.lovo.mvc.entity.UserEntity;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -52,10 +53,10 @@ public class UserController {
     }
 
    @RequestMapping("testUser.lovo")
-    public ModelAndView testUser(String userName){
+    public ModelAndView testUser(@RequestParam("userName") String us){
         ModelAndView mv=new ModelAndView();
         mv.setViewName("index");//返回的视图地址
-        mv.addObject("info",userName);
+        mv.addObject("info",us);
         return mv;
     }
    @RequestMapping("getJson.lovo")

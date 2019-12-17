@@ -11,20 +11,25 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller //被spring管理
 @RequestMapping("user/")
 public class UserController {
+    List<UserEntity> list=new ArrayList<>();
+
+
 
    @RequestMapping("savaUser.lovo")
     public ModelAndView savaUser(UserEntity userEntity, String userName, String userAge, ServletRequest request, ServletResponse response){
 
-       System.out.println(userEntity.getUserName()+"/"+userEntity.getUserAge());
+           list.add(userEntity);
            ModelAndView mv=new ModelAndView();
-           mv.setViewName("/index.jsp");//返回的视图地址
-           mv.addObject("info",userName);
+           mv.setViewName("index");//返回的视图地址
+           mv.addObject("listUser",list);
            return  mv;
 
 
@@ -68,8 +73,8 @@ public class UserController {
     @ResponseBody //不返回视图，只返回数据
     public  UserEntity getJsonObject(){
        UserEntity userEntity=new UserEntity();
-       userEntity.setUserAge(30);
-       userEntity.setUserName("赵云");
+       userEntity.setUserAge(32);
+       userEntity.setUserName("赵云2");
         return userEntity;
     }
 }

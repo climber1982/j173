@@ -12,7 +12,8 @@
               <input type="text"  v-model="userName"><p/>
               <input type="text" v-model="userAge"><p/>
               <input type="button" value="保存" @click="savaUser()">
-         </form>
+         </form><p/>
+       <span>{{resultInfo}}</span>
    </div>
 
    <script type="text/javascript">
@@ -21,20 +22,27 @@
            el:"#userId",
            data:{
               userName:"",
-               userAge:""
+               userAge:"",
+               resultInfo:""
            },
            methods:{
                savaUser:function(){
-                   this.userName='张飞';
+
+                   //组装保存的参数
+                   var params = new URLSearchParams();
+                   params.append("userName",this.userName);
+                   params.append("userAge",this.userAge);
+                   //调用AJAX保存
+                   axios({
+                       method: 'post',
+                       url:'/mvc/savaUserVue.lovo',
+                       data:params
+                   }).then(response => (this.resultInfo=response.data))
+                       .catch(function (error) { // 请求失败处理
+                           console.log(error);
+                       });
+
                }
-           },
-           mounted () {
-               axios
-                   .get('/mvc/user/getJsonObj.lovo')
-                   .then(response => (this.userName=response.data.userName,this.userAge=response.data.userAge))
-                   .catch(function (error) { // 请求失败处理
-                       console.log(error);
-                   });
            }
        });
 

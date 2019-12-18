@@ -1,6 +1,7 @@
 package com.lovo.mvc.controller;
 
 import com.lovo.mvc.entity.UserEntity;
+import com.lovo.mvc.util.StringInfo;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,5 +21,9 @@ public class UserVueController {
         }
         return  list;
     }
-
+   @RequestMapping("savaUserVue.lovo")
+    public String savaUserVue(UserEntity user){
+       System.out.println(user.getUserName()+"/"+user.getUserAge());
+       return StringInfo.RESULETOK;
+    }
 }

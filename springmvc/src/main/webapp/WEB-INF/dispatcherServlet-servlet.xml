@@ -37,8 +37,9 @@
         <mvc:interceptor>
             <!--拦截-->
             <mvc:mapping path="/**"/>
-            <!--放行-->
-            <mvc:exclude-mapping path="/user/*/info.lovo"></mvc:exclude-mapping>
+            <!--放行
+            <mvc:exclude-mapping path="/user/login.lovo"></mvc:exclude-mapping>-->
+             <mvc:exclude-mapping path="/**"></mvc:exclude-mapping>
             <bean class="com.lovo.mvc.interceptor.MyInterceptor"></bean>
         </mvc:interceptor>
 

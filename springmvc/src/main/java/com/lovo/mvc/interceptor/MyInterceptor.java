@@ -10,7 +10,16 @@ public class MyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("调用方法之前");
-        return true;
+        boolean bl=false;
+        //从session中获取用户
+      Object obj=  request.getSession().getAttribute("user");
+      if(null!=obj){
+        bl=true;
+      }else{
+          //没有登录,跳转到登录界面
+        response.sendRedirect("/mvc/index.jsp");
+      }
+        return bl;
     }
 
     @Override

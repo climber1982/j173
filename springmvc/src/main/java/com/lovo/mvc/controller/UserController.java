@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -51,12 +52,42 @@ public class UserController {
            rstring="非法登录";
        }else {
            rstring=result;
+
+           request.setAttribute("userName",userName);
+           //登录成功，把用户放入session
+           request.getSession().setAttribute("user",userName);
+           return "info";
        }
        //把结果放入到request对象
         request.setAttribute("info",rstring);
 
-       return "index.jsp";
+       return "index";
     }
+  @RequestMapping("gotoInfo.lovo")
+    public  String gotoInfo(){
+
+       return  "info";
+    }
+   @RequestMapping("redirectTest.lovo")
+    public ModelAndView redirectTest(){
+       ModelAndView mv=new ModelAndView();
+
+       //创建重定向视图
+       RedirectView redirectView=new RedirectView();
+       redirectView.setUrl("/mvc/index.jsp");
+       //把重定向视图放入到ModelAndView
+       mv.setView(redirectView);
+
+
+       return mv;
+    }
+    @RequestMapping("redirectTest2.lovo")
+    public String redirectTest2(){
+
+       return "redirect:/index.jsp";
+    }
+
+
 
    @RequestMapping("testUser.lovo")
     public ModelAndView testUser(@RequestParam("userName") String us){

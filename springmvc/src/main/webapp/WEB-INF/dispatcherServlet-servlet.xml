@@ -32,4 +32,16 @@
             </bean>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!--拦截-->
+            <mvc:mapping path="/**"/>
+            <!--放行-->
+            <mvc:exclude-mapping path="/user/*/info.lovo"></mvc:exclude-mapping>
+            <bean class="com.lovo.mvc.interceptor.MyInterceptor"></bean>
+        </mvc:interceptor>
+
+    </mvc:interceptors>
+
 </beans>

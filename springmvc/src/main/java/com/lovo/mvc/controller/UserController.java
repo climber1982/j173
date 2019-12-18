@@ -3,6 +3,7 @@ package com.lovo.mvc.controller;
 import com.lovo.mvc.entity.UserEntity;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -76,5 +77,24 @@ public class UserController {
        userEntity.setUserAge(32);
        userEntity.setUserName("赵云2");
         return userEntity;
+    }
+   @RequestMapping("{tag}/info.lovo")
+   @ResponseBody
+    public String getCarInfo(@PathVariable("tag") int tag){
+       String carInfo="";
+       switch (tag){
+           case 0:
+               carInfo="宝马";
+               break;
+           case 1:
+               carInfo="奔驰";
+               break;
+           case 2:
+               carInfo="路虎";
+               break;
+               default:
+                   carInfo="奇瑞";
+       }
+       return  carInfo;
     }
 }

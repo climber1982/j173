@@ -58,4 +58,7 @@
         <constructor-arg value="${img_path}"></constructor-arg>
         <constructor-arg value="${img_suffix}"></constructor-arg>
     </bean>
+
+    <!--自定义异常类-->
+     <bean class="com.lovo.mvc.util.MyException"></bean>
 </beans>

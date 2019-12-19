@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-
+      <span style="size: 40px;color: green">${info}</span>
 </body>
 </html>

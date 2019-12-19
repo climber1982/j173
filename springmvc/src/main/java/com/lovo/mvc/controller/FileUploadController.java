@@ -35,18 +35,18 @@ public class FileUploadController {
             String newFileName=System.currentTimeMillis()+"."+suffix;
         //判断文件夹是否存在，如果不存在就创建
           File f=new File(imgUtile.getImgPath()+newFileName);
-          if(!f.exists()){
-              File f2=new File(imgUtile.getImgPath());
-              f2.mkdir();
-              f.createNewFile();
-          }
+            f.createNewFile();
+//          if(!f.exists()){
+//              File f2=new File(imgUtile.getImgPath());
+//              f2.mkdir();
+//              f.createNewFile();
+//          }
         //实现上传
            file.transferTo(f);
         //把文件名保存到数据库
 
           List<String> listImg=  imgUtile.getListImg();
           listImg.add(newFileName);
-          mv.addObject("imgPaths",listImg);
         }else {
             //文件非法
             mv.addObject("imgInfo", StringInfo.UPLOADERROR);

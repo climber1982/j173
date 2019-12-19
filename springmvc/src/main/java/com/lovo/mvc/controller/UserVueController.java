@@ -1,7 +1,9 @@
 package com.lovo.mvc.controller;
 
 import com.lovo.mvc.entity.UserEntity;
+import com.lovo.mvc.service.IUserService;
 import com.lovo.mvc.util.StringInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +12,9 @@ import java.util.List;
 
 @RestController //下面的所有方法只返回数据
 public class UserVueController {
+    @Autowired
+    private IUserService userService;
+
    @RequestMapping("getListUser.lovo")
     public List<UserEntity> getListUser(){
         List<UserEntity> list=new ArrayList<>();
@@ -23,7 +28,8 @@ public class UserVueController {
     }
    @RequestMapping("savaUserVue.lovo")
     public String savaUserVue(UserEntity user){
-       System.out.println(user.getUserName()+"/"+user.getUserAge());
+       //验证。。。。。
+       userService.savaUser(user);
        return StringInfo.RESULETOK;
     }
 }

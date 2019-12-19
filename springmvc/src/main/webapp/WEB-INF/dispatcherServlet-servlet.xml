@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc
 		http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     <context:component-scan base-package="com.lovo.mvc.controller"></context:component-scan>
-
+     <context:property-placeholder location="classpath:img.properties"></context:property-placeholder>
     <!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
             p:prefix="/" p:suffix=".jsp" />
@@ -53,4 +53,9 @@
         <property name="maxInMemorySize" value="40960"></property>
     </bean>
 
+    <!--自定义图片类-->
+    <bean class="com.lovo.mvc.util.ImgUtile">
+        <constructor-arg value="${img_path}"></constructor-arg>
+        <constructor-arg value="${img_suffix}"></constructor-arg>
+    </bean>
 </beans>

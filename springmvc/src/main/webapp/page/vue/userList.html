@@ -8,6 +8,7 @@
 </head>
 <body>
    <div id="userId">
+       <img :src="imgsrc" width="500px" height="400px"/>
          <table>
              <tr>
              <th>名字</th>
@@ -25,7 +26,8 @@
        new Vue({
            el:"#userId",
            data:{
-             info:""
+             info:"",
+               imgsrc:"/img/a5336ad69b344ba799638bd0e3b55409.jpg"
            },
            methods:{
                savaUser:function(){

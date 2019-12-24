@@ -31,11 +31,25 @@
 
 
     <!-- 数据源 -->
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
         <property name="driverClassName" value="${jdbc_driver}"></property>
         <property name="username" value="${jdbc_user}"></property>
         <property name="password" value="${jdbc_password}"></property>
         <property name="url" value="${jdbc_url}"></property>
+        <!--initialSize: 初始化连接-->
+        <property name="initialSize" value="5"/>
+        <!--maxIdle: 最大空闲连接-->
+        <property name="maxIdle" value="10"/>
+        <!--minIdle: 最小空闲连接-->
+        <property name="minIdle" value="5"/>
+        <!--maxActive: 最大连接数量-->
+        <property name="maxActive" value="15"/>
+
+        <!--removeAbandoned: 是否自动回收超时连接-->
+        <property name="removeAbandoned" value="true"/>
+        <!-- removeAbandonedTimeout: 超时时间(以秒数为单位)-->
+        <property name="removeAbandonedTimeout" value="180"/>
+
     </bean>
 
     <!-- JPA实体管理器工厂 -->

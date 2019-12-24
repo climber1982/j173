@@ -18,7 +18,7 @@ public class TUser {
     @Test
     public  void savaUser(){
         UserEntity user=new UserEntity();
-        user.setUserName("马超");
+        user.setUserName("马超24");
         user.setUserAge(30);
         user.setMessage("先锋");
         userService.savaUser(user);

@@ -9,6 +9,7 @@
         <module name="hibernateObj" />
         <module name="springmvc" />
         <module name="springObj" />
+        <module name="vue" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

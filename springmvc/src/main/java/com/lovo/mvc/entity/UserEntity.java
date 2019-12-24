@@ -1,5 +1,6 @@
 package com.lovo.mvc.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -19,7 +20,9 @@ public class UserEntity {
     private int userAge;
     @Column(columnDefinition = "text")
     private String message;
+
    @Column(columnDefinition = "TIMESTAMP")
+   @JsonIgnore
     private String dateTime;
 
     public String getUserId() {

@@ -9,8 +9,12 @@
       <param-name>contextConfigLocation</param-name>
       <param-value>classpath:springJPA.xml</param-value>
   </context-param>
-   
 
+    <!--延迟关闭session-->
+    <filter>
+        <filter-name>OpenEntityManagerInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.jpa.support.OpenEntityManagerInViewFilter</filter-class>
+    </filter>
 
     <servlet>
         <servlet-name>dispatcherServlet</servlet-name>
@@ -34,5 +38,10 @@
         <servlet-name>dispatcherServlet</servlet-name>
         <url-pattern>*.lovo</url-pattern>
     </servlet-mapping>
+
+    <filter-mapping>
+        <filter-name>OpenEntityManagerInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
